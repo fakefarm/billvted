@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script data-require="angular.js@*" data-semver="1.3.0-rc2" src="https://code.angularjs.org/1.3.0-rc.2/angular.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-app="bandt">
+  <div ng-controller='bandtController'>
+    <div class='game'>
+    <div class='btns' ng-class="{ 'big-text': noPeople }">
+      <div class='btn' ng-click='toggleBill()'>Bill</div>
+      <div>vs</div>
+      <div class='btn' ng-click='toggleTed()'>Ted</div>
+      <div class='x' ng-show='!noPeople' ng-click='endMatch()'>end match</div>
+    </div>
+    <div class='models'>
+      <div class='mod' ng-show="showBill">
+        <img src="http://media.alternativeapparel.com/media/catalog/product/1/2/12324FRWHEL_0.jpg" alt="" />
+      </div>
+      <div class='mod' ng-show="showTed">
+      <img src="http://media.alternativeapparel.com/media/catalog/product/4/2/42196BBVW2X0.jpg" alt="" />
+      </div>
+    </div>
+  </div>
+  <div class='score' ng-show="newGame()">
+    <div>scoreboard</div>
+    <div ng-show="billScore.points">bill: {{ billScore.points }}</div>
+    <div ng-show="tedScore.points">ted: {{ tedScore.points }}</div>
+    <div>Current Leader</div>
+    <img ng-src="images/{{checkScore()}}.png">
+  </div>
+  </div>
+  </body>
+
+</html>
