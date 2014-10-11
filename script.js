@@ -29,7 +29,7 @@ app.controller('bandtController', function($scope){
     $scope.showBill = false;
     $scope.showTed = false;
     $scope.noPeople = true;
-    $scope.showResults = !$scope.showResults;
+    $scope.showResults = true;
     $scope.winner = $scope.leader();
     $scope.billScore.points = 0;
     $scope.tedScore.points = 0;
