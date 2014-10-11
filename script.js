@@ -4,32 +4,38 @@ app.controller('bandtController', function($scope){
   $scope.showBill = false;
   $scope.showTed = false;
   $scope.noPeople = true;
+  $scope.showResults = false;
+  $scope.winner = false;
 
   $scope.toggleBill = function(){
-    $scope.showBill = !$scope.showBill;
+    $scope.showBill = true;
     $scope.showTed = false;
     $scope.noPeople = false;
     $scope.billScore.points += 1;
-    $scope.checkScore();
+    $scope.leader();
+    $scope.winner = false;
   };
 
   $scope.toggleTed = function(){
-    $scope.showTed = !$scope.showTed;
+    $scope.showTed = true;
     $scope.showBill = false;
     $scope.noPeople = false;
     $scope.tedScore.points += 1;
-    $scope.checkScore();
+    $scope.leader();
+    $scope.winner = false;
   };
 
   $scope.endMatch = function() {
     $scope.showBill = false;
     $scope.showTed = false;
     $scope.noPeople = true;
+    $scope.showResults = !$scope.showResults;
+    $scope.winner = $scope.leader();
     $scope.billScore.points = 0;
     $scope.tedScore.points = 0;
   };
 
-  $scope.checkScore = function(){
+  $scope.leader = function(){
     if ($scope.billScore.points > $scope.tedScore.points) {
       return 'bill';
     } else if ($scope.tedScore.points > $scope.billScore.points) {
@@ -50,3 +56,12 @@ app.controller('bandtController', function($scope){
     }
   };
 });
+
+app.directive('matchResults', function(){
+  return {
+    restrict: 'EA',
+    replace: true,
+    templateUrl: 'templates/winner.html',
+  };
+});
+
